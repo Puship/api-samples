@@ -83,4 +83,4 @@ By pressing "Query the GetApps API" you should see the number of apps in your ac
 This is a shared project between the two previous projects and contains the DTO classes used to map the results of calls to the Puship API.
 
 
-This example is also available online at this [link] (http://example1.puship.com)...enjoy!
+This example is also available online at this [link] (http://example1.puship.com) ...enjoy!
