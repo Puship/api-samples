@@ -1,0 +1,101 @@
+﻿@model Sample.Shared.DTO.PushMessageDTO
+
+
+<div>
+    <h4>PushMessageDTO</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PushMessageId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PushMessageId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Badge)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Badge)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sound)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sound)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SendApns)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SendApns)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SendC2dm)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SendC2dm)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SendMpns)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SendMpns)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SendBpns)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SendBpns)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SendPush)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SendPush)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.appAccessToken)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.appAccessToken)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TagFilters)
+        </dt>
+        <dd class = "col-sm-10">
+            <ul>
+            @foreach(var tag in Model.TagFilters)
+            {
+               <li>@tag.Tag</li>
+            }
+            </ul>
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PushParams)
+        </dt>
+        <dd class = "col-sm-10">
+            <ul>
+            @foreach(var par in Model.PushParams)
+            {
+               <li>@par.KeyField : @par.ValueField</li>
+            }
+            </ul>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
+</div>

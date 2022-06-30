@@ -1,0 +1,129 @@
+﻿@model Sample.Shared.Filters.PushMessageByPlatform
+
+<h4>PushMessageByPlatform</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SendPushMessageByPlatform">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="SendApns" /> @Html.DisplayNameFor(model => model.SendApns)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="SendC2dm" /> @Html.DisplayNameFor(model => model.SendC2dm)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="SendMpns" /> @Html.DisplayNameFor(model => model.SendMpns)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="SendBpns" /> @Html.DisplayNameFor(model => model.SendBpns)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="P1Latitude" class="control-label"></label>
+                <input asp-for="P1Latitude" class="form-control" />
+                <span asp-validation-for="P1Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="P1Longitude" class="control-label"></label>
+                <input asp-for="P1Longitude" class="form-control" />
+                <span asp-validation-for="P1Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="P2Latitude" class="control-label"></label>
+                <input asp-for="P2Latitude" class="form-control" />
+                <span asp-validation-for="P2Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="P2Longitude" class="control-label"></label>
+                <input asp-for="P2Longitude" class="form-control" />
+                <span asp-validation-for="P2Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastPositionDate" class="control-label"></label>
+                <input asp-for="LastPositionDate" class="form-control" />
+                <span asp-validation-for="LastPositionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastPositionNumber" class="control-label"></label>
+                <input asp-for="LastPositionNumber" class="form-control" />
+                <span asp-validation-for="LastPositionNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="visibility:hidden">
+                <label asp-for="AppCode" class="control-label"></label>
+                <input asp-for="AppCode" class="form-control" />
+                <span asp-validation-for="AppCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message" class="control-label"></label>
+                <input asp-for="Message" class="form-control" />
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Badge" class="control-label"></label>
+                <input asp-for="Badge" class="form-control" />
+                <span asp-validation-for="Badge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sound" class="control-label"></label>
+                <input asp-for="Sound" class="form-control" />
+                <span asp-validation-for="Sound" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SendPush" class="control-label"></label>
+                <input asp-for="SendPush" class="form-control" />
+                <span asp-validation-for="SendPush" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Param1" class="control-label"></label>
+                <input asp-for="Param1" class="form-control" />
+                <span asp-validation-for="Param1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Param2" class="control-label"></label>
+                <input asp-for="Param2" class="form-control" />
+                <span asp-validation-for="Param2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Param3" class="control-label"></label>
+                <input asp-for="Param3" class="form-control" />
+                <span asp-validation-for="Param3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Param4" class="control-label"></label>
+                <input asp-for="Param4" class="form-control" />
+                <span asp-validation-for="Param4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Param5" class="control-label"></label>
+                <input asp-for="Param5" class="form-control" />
+                <span asp-validation-for="Param5" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                @if (ViewBag.IsSuccess == true)
+                {
+                    <div class="alert alert-success alert-dismissible fade show text-center">Successfully 
+                        sended push!
+                    </div>
+                    <a href="javascript:void(0);" onclick="history.go(-2);">Back to List</a>
+                } else
+                {
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

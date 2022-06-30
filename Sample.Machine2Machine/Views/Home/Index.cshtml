@@ -1,0 +1,58 @@
+﻿@model Sample.Machine2Machine.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>This example was written completely using the puship API pointing to <u>api.puship.com</u> in Production</p>
+    <p>Some features may be limited if you do not have an Enterprise profile or Trial mode</p>
+    <p>You can find Puship api docs with swagger support <a href="https://api.puship.com">here</a>.</p>
+
+    @if (!Model.isLogged)
+    {
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                <form asp-action="LoginMachine2Machine">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="client_id" class="control-label"></label>
+                        <input asp-for="client_id" class="form-control" placeholder="AHU47J-example-api"/>
+                        <span asp-validation-for="client_id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="client_secret" class="control-label"></label>
+                        <input asp-for="client_secret" class="form-control" placeholder="b40b7f81-16b0-46a4-b065-d33d5230f2f6" />
+                        <span asp-validation-for="client_secret" class="text-danger"></span>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    } else
+    {
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <form asp-action="Logout">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+                    <div class="form-group">
+                        <label asp-for="token" class="control-label"></label>
+                        <textarea style="width:100%; min-height:250px; word-wrap:break-word;" readonly>@Model.token</textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Logout" class="btn btn-primary" />
+                        
+                        <br/>
+                        <br/>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="App" asp-action="Index">Click here to see the list of Apps</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+</div>

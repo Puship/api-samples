@@ -1,0 +1,111 @@
+﻿@model PushMessageViewModel
+
+@{
+    ViewData["Title"] = "Push Messages Management";
+}
+<h1>@ViewData["Title"]</h1>
+
+@if (string.IsNullOrEmpty(@Model.deviceId))
+{
+<p>Push message list of app with code: @Model.accessCode</p>
+}
+else
+{
+<p>Push message list of device with id: @Model.deviceId</p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("PushMessageId", "Index", new { sortOrder = ViewBag.PushMessageIdSortParm, accessToken = Model.accessCode })
+            </th>
+            <th>
+                @Html.ActionLink("Message", "Index", new { sortOrder = ViewBag.MessageSortParm, accessToken = Model.accessCode })
+            </th>
+            <th>
+                @Html.ActionLink("Badge", "Index", new { sortOrder = ViewBag.BadgeSortParm, accessToken = Model.accessCode })
+            </th>
+            <th>
+                @Html.ActionLink("Sound", "Index", new { sortOrder = ViewBag.SoundSortParm, accessToken = Model.accessCode })
+            </th>
+            <th>
+                @Html.ActionLink("SendApns", "Index", new { sortOrder = ViewBag.SendApnsSortParm, accessToken = Model.accessCode })
+            </th>
+            <th>
+                @Html.ActionLink("SendC2dm", "Index", new { sortOrder = ViewBag.SendC2dmSortParm, accessToken = Model.accessCode })
+            </th>
+            <th>
+                @Html.ActionLink("SendMpns", "Index", new { sortOrder = ViewBag.SendMpnsSortParm, accessToken = Model.accessCode })
+            </th>
+            <th>
+                @Html.ActionLink("SendBpns", "Index", new { sortOrder = ViewBag.SendBpnsSortParm, accessToken = Model.accessCode })
+            </th>
+            <th>
+                @Html.ActionLink("Created", "Index", new { sortOrder = ViewBag.CreatedSortParm, accessToken = Model.accessCode })
+            </th>
+            <th>
+                @Html.ActionLink("SendPush", "Index", new { sortOrder = ViewBag.SendPushSortParm, accessToken = Model.accessCode })
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.pushMessage.Data) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PushMessageId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Badge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sound)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SendApns)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SendC2dm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SendMpns)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SendBpns)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SendPush)
+            </td>
+            <td>
+                <a asp-action="Detail" asp-route-id="@item.PushMessageId">Detail</a> |
+                <a asp-action="Delete"  asp-route-id="@item.PushMessageId" asp-route-accessToken="@item.appAccessToken">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+@{
+    var prevDisabled = Model.pushMessage?.PreviousPage == null ? "disabled" : "";
+    var nextDisabled = Model.pushMessage?.NextPage == null ? "disabled" : "";
+}
+
+<a asp-page="/"
+   asp-route-pageIndex="@(Model.pageIndex - 1)" asp-route-accessToken="@(Model.accessCode)"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<span>@Model.pageIndex</span>/<span>@Model.pushMessage.TotalPages</span>
+<a asp-page="/"
+   asp-route-pageIndex="@(Model.pageIndex + 1)" asp-route-accessToken="@(Model.accessCode)"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

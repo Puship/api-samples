@@ -1,0 +1,30 @@
+﻿@model Sample.Shared.DTO.PushMessageDTO
+
+<h3>Are you sure you want to delete this push?</h3>
+<div>
+    <h4>PushMessageDTO</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PushMessageId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PushMessageId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        
+        @if (ViewBag.IsSuccess == true)
+        {
+            <div class="alert alert-success alert-dismissible fade show text-center">Deleted!
+            </div>
+            <a href="javascript:void(0);" onclick="history.go(-2);">Back to List</a>
+        } else
+        {
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
+            
+        }
+    </form>
+</div>

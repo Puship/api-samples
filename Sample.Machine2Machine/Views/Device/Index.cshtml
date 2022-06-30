@@ -1,0 +1,89 @@
+﻿@model DeviceViewModel
+
+@{
+    ViewData["Title"] = "Devices Management";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Devices list of app with access code: @Model.accessCode</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("DeviceType", "Index", new { sortOrder = ViewBag.DeviceTypeSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Token", "Index", new { sortOrder = ViewBag.TokenSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("DevicePlatformId", "Index", new { sortOrder = ViewBag.DevicePlatformIdSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Created", "Index", new { sortOrder = ViewBag.CreatedSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Updated", "Index", new { sortOrder = ViewBag.UpdatedSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Expired", "Index", new { sortOrder = ViewBag.ExpiredSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Language", "Index", new { sortOrder = ViewBag.LanguageSortParm })
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.devices.Data) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Token)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DevicePlatformId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Expired)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td>
+                <a asp-controller="PushMessage" asp-action="SendPushMessageByDevice"  asp-route-id="@item.DevicePlatformId" asp-route-accessToken="@item.appAccessToken">Send</a> |
+                <a asp-controller="PushMessage" asp-route-id="@item.DevicePlatformId" asp-route-accessToken="@item.appAccessToken">PushMessages</a> |
+                <a asp-action="Delete"  asp-route-id="@item.DevicePlatformId" asp-route-accessToken="@item.appAccessToken">Delete</a> |
+                <a asp-controller="Tag" asp-route-appCode="@item.appAccessToken" asp-route-deviceId="@item.DevicePlatformId">Tags</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+@{
+    var prevDisabled = Model.devices?.PreviousPage == null ? "disabled" : "";
+    var nextDisabled = Model.devices?.NextPage == null ? "disabled" : "";
+}
+
+<a asp-page="/"
+   asp-route-pageIndex="@(Model.pageIndex - 1)"  asp-route-sortOrder="@ViewBag.CurrentSort"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<span>@Model.pageIndex</span>/<span>@Model.devices.TotalPages</span>
+<a asp-page="/"
+   asp-route-pageIndex="@(Model.pageIndex + 1)"  asp-route-sortOrder="@ViewBag.CurrentSort"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
